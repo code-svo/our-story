@@ -46,13 +46,6 @@ export const demoMemories: Memory[] = [
     photo_urls: [],
     created_at: '2026-08-29T00:00:00Z',
   },
-  {
-    id: '5',
-    title: 'Still Us',
-    memory_date: '2026-09-10',
-    caption: 'We\'ve had our ups and downs, but we\'re still here. Choosing to communicate, understand, grow and face everything together.',
-    photo_urls: [],
-    created_at: '2026-09-10T00:00:00Z',
   },
 ];
 
