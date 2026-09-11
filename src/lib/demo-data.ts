@@ -46,7 +46,6 @@ export const demoMemories: Memory[] = [
     photo_urls: [],
     created_at: '2026-08-29T00:00:00Z',
   },
-  },
 ];
 
 export const demoSpecialDates: SpecialDate[] = [
