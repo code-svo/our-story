@@ -23,22 +23,8 @@ export default function EnterPage() {
       });
 
       if (res.ok) {
-        // Check if today is birthday → show celebration on first load
-        try {
-          const bdayRes = await fetch('/api/birthday-check');
-          const bdayData = await bdayRes.json();
-
-          if (bdayData.isBirthday) {
-            // Redirect with celebrate flag — celebration will pop first
-            router.push('/?celebrate=1');
-            router.refresh();
-            return;
-          }
-        } catch {
-          // If check fails, just proceed normally
-        }
-
-        router.push('/');
+        // Always show the birthday presentation upon successful login as requested
+        router.push('/?celebrate=1');
         router.refresh();
       } else {
         setError('That\'s not the right key. Try again.');
