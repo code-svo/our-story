@@ -97,23 +97,16 @@ export const demoSpecialDates: SpecialDate[] = [
 export const demoLetters: Letter[] = [
   {
     id: '1',
-    title: 'For the Days You Feel Unsure',
-    content: 'I know some days are harder than others. I know the world gets loud, and doubt creeps in. But I want you to know — on those days, especially on those days — I choose you. Not because things are perfect, but because even the imperfect parts of us are worth fighting for.\n\nYou are braver than you believe, stronger than you seem, and more loved than you will ever know. And whenever you forget, I\'ll be right here to remind you.',
-    letter_date: '2026-09-15',
-    created_at: '2026-09-15T00:00:00Z',
+    title: '1 MONTH ALREADY... !!!',
+    content: 'Bubuuuuu.... ami ajke khub khub khubbbbb happieee...\nLike seriously dekte dekte 1 month hoagelo... ♥️ Amar\nliterally kanna pacche likhte gia.... "Tmr moton\nkauke life a pabo r je amk atoooo bhalobashbeee" 💕\nJei cheleta k ami akhon atoooo bhalobashi take ami\nkokhono school e dekhlam e naaaahhh!! R jekhane\namra Same School e porechi ata believe e korte\nparinaa... "But akhon jokhon peyegachi tmk rrrrr\nCharbonaaaaaahh" ♥️ [THREAT DILAM] Bubbbbuuuuuu...\n"I LOVE YOU" khuubbbb... "Amader first Date 09.08.2026"\nkonodinoooo bhulbo Naaa r "amader first kissieee o"\nKhubbb special moments amr jonno "Tmr sob\nkichuiii amr jonno khub special Shonaaa" ♥️ Jani aktu\nbeshi raag kore feli but toke bhalobashhii khubbb r\nataooo jani "Tumio bhalobasho khub" [Arom bhabei\nbhalabeshe jashh shona] "aailobheuuu so much Shona"\nThank you for making me feel special with each\npassing day... Thank you for everything you do\nfor meee!! You make me feel like the mosstttt\nspecial personn in the world bubuuu sottieeeee 💕\nTmr moton keo kokhono amk ato jotno r ador kore\nbhalobasheni... Aailobheu shona once again "Happy 1 month"\nmuaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhh',
+    letter_date: '2026-08-19',
+    created_at: '2026-08-19T00:00:00Z',
   },
   {
     id: '2',
-    title: 'What I Never Told You',
-    content: 'I never told you that the first time you laughed — really laughed, the kind that makes your eyes disappear — I felt my heart rearrange itself. It\'s like everything I\'d been carrying suddenly became lighter.\n\nI never told you that I replay our conversations in my head before falling asleep. Or that your voice is the first thing I want to hear every morning.\n\nSome things are too big for words. But I\'m trying anyway, because you deserve to know.',
-    letter_date: '2026-12-20',
-    created_at: '2026-12-20T00:00:00Z',
-  },
-  {
-    id: '3',
-    title: 'A Promise',
-    content: 'I promise to be your calm in the chaos. To listen when you need to be heard, and to sit beside you in silence when words aren\'t enough.\n\nI promise to celebrate your wins like they\'re my own, and to hold your hand through the losses. I promise to keep choosing us — not just on the easy days, but on the hard ones too.\n\nThis isn\'t a fairy tale. It\'s something better. It\'s real.',
-    letter_date: '2026-07-19',
-    created_at: '2026-07-19T00:00:00Z',
-  },
+    title: 'To - My Dadu.. 💕',
+    content: 'Subject - Lovey doveyyy and missie missieee talksssszzz...\n\nRespected Dadu...,\n\nI, Diya Ghosh resident of (your Dil). I am writing\nthis letter to express all of my feelings to youuuuu...\nSoooo... basically ata amar first letter tmk... ami\nlike khub khub khubbbbb excited bubuuuuu 💕 I literally\nnever planned to feel like this wayyyy, but somewhere\nbetween our conversations, you became my favourite\npart of each and everyday... 🥺♥️ I feel safe around\nuuu my love... 💕 R bubuuu listen !!! Tmk chara\nKotthaoooo jabona baibyyy (muaaaaaaaaaaaaaaahhhhh) 🥺\nAmk nia akdm bhabbe naaa... tumi career a focus koro\nporashona koro... I\'ll support you shunu ♥️... (9th August\n2026) amader first dekha hocche... ami khubbbbbb\nexcited abr nervous o but thikacheeyyyyy... tumi\njkhn ae letter ta porbe tokhon amra diyane bari chole\nashbooo... 👀♥️ beshiii pakamo korte gia emoji gulo nosto\nhoagelooo but anyways "I LOVE YOU BUBU" aailobheuu\nso muchhh... plzz tumi abar kokhono amk chere jeonaaa...!!\n\nFrom - Your Dadi... 💕',
+    letter_date: '2026-08-09',
+    created_at: '2026-08-09T00:00:00Z',
+  }
 ];

@@ -135,15 +135,10 @@ function LetterCard({
             <div className="px-6 pb-6">
               <div className="hairline mb-6" />
 
-              <div className="space-y-4 pl-2 border-l border-gold/10">
-                {letter.content.split('\n').filter(p => p.trim()).map((paragraph, i) => (
-                  <p
-                    key={i}
-                    className="text-foreground/80 text-sm md:text-base leading-loose pl-4 font-display italic"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
+              <div className="space-y-4 pl-2 border-l border-gold/20">
+                <div className="text-foreground/90 text-base md:text-lg leading-relaxed pl-4 font-display italic whitespace-pre-wrap">
+                  {letter.content}
+                </div>
               </div>
 
               <div className="mt-6 text-right">
