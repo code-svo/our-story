@@ -1,26 +1,414 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap');
+@import "tailwindcss" source(none);
+@source "../";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ── Theme Tokens ── */
 @theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Maroon Red accent system — replaces old gold */
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-wine: var(--wine);
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", system-ui, sans-serif;
+
+  --animate-fade-in: fade-in 0.8s ease-out forwards;
+  --animate-rise-in: rise-in 0.8s ease-out forwards;
+  --animate-glow-pulse: glow-pulse 3s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 3s ease-in-out infinite;
+  --animate-count-flip: count-flip 0.6s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+
+  /* ── Core palette — deep red / maroon aesthetic ── */
+  --background: oklch(0.20 0.10 15);
+  --foreground: oklch(0.98 0.02 10);
+  --card: oklch(0.25 0.12 15);
+  --card-foreground: oklch(0.98 0.02 10);
+  --popover: oklch(0.25 0.12 15);
+  --popover-foreground: oklch(0.98 0.02 10);
+  --primary: oklch(0.50 0.18 15);
+  --primary-foreground: oklch(0.98 0.02 10);
+  --secondary: oklch(0.30 0.12 15);
+  --secondary-foreground: oklch(0.98 0.02 10);
+  --muted: oklch(0.30 0.12 15);
+  --muted-foreground: oklch(0.75 0.05 15);
+  --accent: oklch(0.35 0.14 15);
+  --accent-foreground: oklch(0.98 0.02 10);
+  --destructive: oklch(0.55 0.19 25);
+  --destructive-foreground: oklch(0.98 0.02 10);
+  --border: oklch(0.50 0.18 15 / 25%);
+  --input: oklch(0.50 0.18 15 / 30%);
+  --ring: oklch(0.50 0.18 15 / 60%);
+
+  /* ── Named accents — True Golden hues to contrast the maroon ── */
+  --gold: oklch(0.82 0.14 85);          /* Bright gold */
+  --gold-light: oklch(0.92 0.10 90);    /* Lighter gold/cream */
+  --gold-deep: oklch(0.65 0.16 75);     /* Deep rich gold */
+  --wine: oklch(0.28 0.10 12);          /* Darkest wine */
+
+  /* ── Rose-gold highlight for special shimmer touches ── */
+  --rose-gold: oklch(0.72 0.10 30);
+  --rose-gold-light: oklch(0.82 0.08 35);
+
+  /* ── Composite tokens ── */
+  --gradient-gold: linear-gradient(120deg, var(--gold-deep), var(--gold-light) 45%, var(--gold));
+  --glow-gold: 0 0 80px -20px oklch(0.82 0.14 85 / 45%);
+  --glow-wine: 0 0 60px -18px oklch(0.35 0.16 12 / 55%);
+
+  /* ── Legacy aliases ── */
+  --bg-base: oklch(0.20 0.10 15);
+  --bg-surface: oklch(0.25 0.12 15);
+  --bg-card: oklch(0.25 0.12 15);
+  --bg-elevated: oklch(0.28 0.13 15);
+  --gold-dim: oklch(0.40 0.14 12);
+  --wine-light: oklch(0.38 0.14 12);
+  --text-body: oklch(0.98 0.02 10);
+  --text-muted: oklch(0.75 0.05 15);
+  --text-dim: oklch(0.65 0.05 15);
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+}
+
+/* ── Keyframes ── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.50 0.18 15 / 12%); }
+  50% { box-shadow: 0 0 40px oklch(0.50 0.18 15 / 28%); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes count-flip {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* ── Base Styles ── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 300;
+  }
+
+  ::selection {
+    background: oklch(0.50 0.18 15);
+    color: oklch(0.96 0.01 50);
   }
 }
 
-body {
-  background: var(--background);
+/* ── Film Grain Overlay ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.028;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--background); }
+::-webkit-scrollbar-thumb { background: var(--gold-deep); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+/* ═══════════════════════════════════
+   Custom @utility Blocks
+   ═══════════════════════════════════ */
+
+@utility text-gold-gradient {
+  background-image: var(--gradient-gold);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+@utility text-gold-shimmer {
+  background: linear-gradient(90deg, var(--gold-deep), var(--gold-light), var(--gold), var(--gold-light), var(--gold-deep));
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+@utility label-caps {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+@utility hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    oklch(0.50 0.18 15 / 45%) 50%,
+    transparent
+  );
+}
+
+@utility hairline-short {
+  height: 1px;
+  width: 80px;
+  margin-inline: auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+@utility grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.28;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  }
+}
+
+@utility glow-gold {
+  box-shadow: var(--glow-gold);
+}
+
+@utility card-soft {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 600ms ease,
+    box-shadow 600ms ease;
+  &:hover {
+    transform: scale(1.02);
+    border-color: rgba(255, 215, 0, 0.5);
+    box-shadow: 0 24px 60px -32px rgba(255, 215, 0, 0.2);
+  }
+}
+
+/* ═══════════════════════════════════
+   Legacy Class Styles (kept for compat)
+   ═══════════════════════════════════ */
+
+/* Maroon Dividers */
+.gold-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-deep), var(--gold), var(--gold-deep), transparent);
+  border: none;
+  margin: 2rem 0;
+}
+
+.gold-divider-short {
+  height: 1px;
+  width: 80px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border: none;
+  margin: 1rem auto;
+}
+
+/* Section Label (legacy — prefer `label-caps` utility) */
+.section-label {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+/* Radial Glow */
+.radial-gold-glow {
+  background: radial-gradient(ellipse at center, oklch(0.50 0.18 15 / 8%) 0%, transparent 70%);
+}
+
+/* Card Base (legacy — prefer `card-soft` utility) */
+.card-base {
+  background: linear-gradient(
+    160deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.02)
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 600ms ease,
+    box-shadow 600ms ease;
+}
+
+.card-base:hover {
+  border-color: rgba(255, 215, 0, 0.5);
+  transform: scale(1.02);
+  box-shadow: 0 24px 60px -32px rgba(255, 215, 0, 0.2);
+}
+
+/* Glow (legacy — prefer `glow-gold` utility) */
+.gold-glow {
+  box-shadow: var(--glow-gold);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 30px oklch(0.82 0.14 85 / 20%), 0 0 60px oklch(0.82 0.14 85 / 10%);
+}
+
+/* Input Styles */
+.input-base {
+  background: oklch(0.25 0.12 15);
+  border: 1px solid oklch(0.50 0.18 15 / 25%);
+  border-radius: 8px;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  font-weight: 300;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  width: 100%;
+}
+
+.input-base:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px oklch(0.50 0.18 15 / 10%);
+}
+
+.input-base::placeholder {
+  color: var(--text-dim);
+}
+
+/* Button — Maroon */
+.btn-gold {
+  background: var(--gradient-gold);
+  color: oklch(0.96 0.01 50);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px oklch(0.50 0.18 15 / 30%);
+}
+
+.btn-gold:active {
+  transform: translateY(0);
+}
+
+/* Button — Outline Maroon */
+.btn-outline-gold {
+  background: transparent;
+  color: var(--gold);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  border: 1px solid oklch(0.50 0.18 15 / 20%);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-outline-gold:hover {
+  border-color: var(--gold);
+  background: oklch(0.50 0.18 15 / 5%);
+  box-shadow: 0 0 20px oklch(0.50 0.18 15 / 10%);
 }
