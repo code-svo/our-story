@@ -5,7 +5,7 @@ import { AUTH_COOKIE_NAME, AUTH_COOKIE_VALUE } from './lib/auth';
 // Routes that don't require authentication
 const PUBLIC_ROUTES = ['/enter'];
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Allow public routes and static assets

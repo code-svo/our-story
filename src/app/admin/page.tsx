@@ -381,14 +381,13 @@ function LetterForm({ onNotify }: { onNotify: NotifyFn }) {
       <div>
         <label className="label-caps block mb-2">Your Words *</label>
         <textarea
-          className="input-base min-h-[200px] resize-y"
+          className="input-base min-h-[200px] resize-y font-display"
           placeholder="Write from the heart..."
           value={content}
           onChange={e => setContent(e.target.value)}
           rows={8}
           required
           style={{ fontStyle: 'italic' }}
-          className="input-base min-h-[200px] resize-y font-display"
         />
       </div>
       <button type="submit" disabled={saving} className="btn-gold w-full disabled:opacity-50">
